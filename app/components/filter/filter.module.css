@@ -1,0 +1,31 @@
+.filter {
+  background: var(--dark-gray);
+  padding: 15px 0;
+}
+
+.filter ul {
+  padding: 0 15px;
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.filter li button {
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 4px;
+  display: block;
+  background: var(--gray);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: var(--white);
+  text-wrap: nowrap;
+  outline: none;
+  cursor: pointer;
+}
+
+.filter li button {
+
+}

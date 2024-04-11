@@ -1,16 +1,23 @@
-import { getAllMovieGenere } from '@/app/utils/endpoint'
-import React from 'react'
+import { MovieGenre } from "@/app/utils/types";
+import styles from "./filter.module.css";
 
-const Filter = async () => {
-  try{
-    const genere = await getAllMovieGenere()
-    console.log(genere)
-  } catch(error) {
-    console.log("error", error)
-  }
+export default function Filter({movieGenres}: {movieGenres: MovieGenre[]}) {
+  
   return (
-    <div>Filter</div>
-  )
+   <div className={styles.filter}>
+    {
+      !!movieGenres && movieGenres?.length > 0 && <ul>
+        {
+          movieGenres.map((genre) => {
+            return <li key={genre.id}>
+              <button>
+                {genre.name}
+              </button>
+            </li>
+          })
+        }
+      </ul>
+    }
+   </div>
+  );
 }
-
-export default Filter
