@@ -25,3 +25,10 @@ body {
   width: 94%;
   margin: 0 auto;
 }
+
+ul, ol { list-style: none; }
+
+button {
+  border: 0;
+  outline: none;
+}

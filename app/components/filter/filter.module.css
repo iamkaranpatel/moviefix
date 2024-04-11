@@ -1,0 +1,32 @@
+.filter {
+  padding: 15px 50px;
+  position: relative;
+  background: var(--dark-gray);
+}
+
+.filter .filter-slide {
+  width: fit-content;
+  margin-right: 8px;
+}
+
+.filter .filter-slide button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  display: block;
+  background: var(--gray);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  text-wrap: nowrap;
+  color: var(--white);
+  cursor: pointer;
+  transition: all .15s linear;
+}
+
+.filter .tab-active button {
+  background-color: var(--red);
+}
+
+.filter .filter-slide button:hover {
+  background-color: var(--red);
+}

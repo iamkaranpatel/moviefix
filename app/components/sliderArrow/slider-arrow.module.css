@@ -1,0 +1,48 @@
+
+.left-arrow,
+.right-arrow {
+  width: 28px;
+  height: 28px;
+  border: 1px solid transparent;
+  border-radius: 99999px;
+  position: absolute;
+  top: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--gray);
+  cursor: pointer;
+  opacity: .8;
+  transform: translateY(-50%);
+  transition: all .15s linear;
+}
+
+.left-arrow:hover,
+.right-arrow:hover {
+  border-color: var(--red);
+}
+
+.left-arrow:disabled,
+.right-arrow:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.left-arrow:disabled:hover,
+.right-arrow:disabled:hover {
+  border-color: transparent;
+}
+
+.left-arrow {
+  left: 10px;
+}
+
+.right-arrow {
+  right: 10px;
+}
+
+.left-arrow svg,
+.right-arrow svg {
+  stroke-width: 1px;
+  stroke: var(--white)
+}
