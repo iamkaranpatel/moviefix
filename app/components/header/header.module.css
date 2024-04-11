@@ -1,0 +1,13 @@
+.header {
+  padding: 15px 0;
+  background: var(--dark-gray);
+  backdrop-filter: blur(10px);
+}
+
+.header a {
+  display: block;
+}
+
+.header img {
+  display: block;
+}
