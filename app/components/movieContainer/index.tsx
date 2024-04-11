@@ -6,7 +6,7 @@ import { MovieGenre } from "@/app/utils/types";
 
 const MovieContainer = () => {
   const [movieGenres, setMovieGenres] = useState<MovieGenre[]>([]);
-console.log(movieGenres)
+
   useEffect(() => {
     const fetchGenere = async () => {
       try {

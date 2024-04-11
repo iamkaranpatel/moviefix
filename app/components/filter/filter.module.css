@@ -1,31 +1,32 @@
 .filter {
+  padding: 15px 50px;
+  position: relative;
   background: var(--dark-gray);
-  padding: 15px 0;
 }
 
-.filter ul {
-  padding: 0 15px;
-  list-style: none;
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
+.filter .filter-slide {
+  width: fit-content;
+  margin-right: 8px;
 }
 
-.filter li button {
+.filter .filter-slide button {
   padding: 6px 12px;
-  border: 0;
   border-radius: 4px;
   display: block;
   background: var(--gray);
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
-  color: var(--white);
   text-wrap: nowrap;
-  outline: none;
+  color: var(--white);
   cursor: pointer;
+  transition: all .15s linear;
 }
 
-.filter li button {
+.filter .tab-active button {
+  background-color: var(--red);
+}
 
+.filter .filter-slide button:hover {
+  background-color: var(--red);
 }
