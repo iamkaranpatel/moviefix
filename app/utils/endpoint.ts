@@ -32,7 +32,8 @@ export const getAllMovieByYear = async (year: number) => {
   return (
     await api.get(endpoints.get("DiscoverMovie")!, {
       params: {
-        'primary_release_year': year
+        'primary_release_year': year,
+        "sort_by": "popularity.desc"
       }
     })
   ).data;
