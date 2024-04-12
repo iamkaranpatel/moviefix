@@ -16,4 +16,4 @@ export interface MovieDetails {
   vote_count: number
 }
 
-export type MovieList = Map<string, MovieDetails[]> 
+export type MovieListType = Map<number, MovieDetails[]> 

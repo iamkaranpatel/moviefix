@@ -9,6 +9,12 @@
   column-gap: 15px;
 }
 
+.movie-list-details {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
 .movie-list-container > li {
   border-radius: 15px;
   flex-basis: calc(33.33% - 10px);
@@ -24,7 +30,7 @@
   max-height: 400px;
 }
 
-.movie-list-container > li h2 {
+.movie-list-container > li h3 {
   margin-bottom: 10px;
 }
 
@@ -95,6 +101,11 @@
   position: relative;
 }
 
+.year-heading {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
 @media only screen and (max-width: 995px) {
   .movie-list-container > li {
     flex-basis: calc(50% - 10px);
@@ -110,7 +121,7 @@
     max-height: 200px;
   }
 
-  .movie-list-container > li h2 {
+  .movie-list-container > li h3 {
     font-size: 20px;
     margin-bottom: 8px;
   }
