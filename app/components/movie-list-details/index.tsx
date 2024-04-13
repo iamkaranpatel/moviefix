@@ -36,7 +36,6 @@ const MovieListDetails = ({
                       <Star size={16} />
                       <span>{details.vote_average.toFixed(2)}</span>
                     </div>
-                    {/* <span className={styles["vote-count"]}>({details.vote_count})</span> */}
                   </div>
                 </div>
                 <div className={styles["movie-info"]}>

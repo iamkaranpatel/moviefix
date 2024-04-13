@@ -57,7 +57,8 @@ const MovieList = () => {
       dataLength={[...movieList?.keys()].length}
       next={fetchMoreData}
       hasMore={hasMore}
-      loader={"loading"}
+      loader={<div><Loader /></div>}
+      style={{overflow: "hidden"}}
     >
       <div className={styles["movie-list-section"]}>
         <div className={`wrapper ${styles["movie-list-details"]}`}>
