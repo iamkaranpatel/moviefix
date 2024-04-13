@@ -1,15 +1,20 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { getAllMovieByYear } from "@/app/utils/endpoint";
-import { MovieGenre, MovieListType } from "@/app/utils/types";
-import styles from "./movie-lising.module.css";
+import styles from "./movie-infinite-scroll.module.css";
 import yearsArray from "@/app/utils/utils";
-import MovieListDetails from "./movie-list-details";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "../loader";
+import MovieListDetails from "../movie-list-details";
+import { useMovieStore } from "@/app/store/movie-store";
 
-const MovieList = ({ movieGenres }: { movieGenres: MovieGenre[] }) => {
-  const [movieList, setMovieList] = useState<MovieListType>(new Map());
+const MovieList = () => {
+  const { movieList, setMovieList, movieGenres } = useMovieStore((state) => ({
+    movieList: state.movieList,
+    movieGenres: state.movieGenres,
+    setMovieList: state.setMovieList,
+  }));
+
   const [index, setIndex] = useState(1);
   const [year, setYear] = useState(yearsArray[0]);
   const [hasMore, setHasMore] = useState(true);
