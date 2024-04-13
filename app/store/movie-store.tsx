@@ -15,7 +15,7 @@ export const useMovieStore = create<MovieStoreState>((set) => ({
   movieList: new Map(),
   tabActive: [0],
   setMovieGenres: (genreData: MovieGenre[]) =>
-    set((state) => ({ movieGenres: [...state.movieGenres, ...genreData] })),
+    set((state) => ({ movieGenres: [...genreData] })),
   setTabActive: (tabs: number[]) => set((state) => ({ tabActive: [...tabs] })),
   setMovieList: (movieDetails: MovieListType) =>
     set(() => ({ movieList: movieDetails })),

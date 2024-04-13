@@ -14,7 +14,7 @@ export default function Filter() {
     tabActive: state.tabActive,
     setTabActive: state.setTabActive,
   }));
-
+console.log(movieGenres,"ll")
   const handleTabActive = (id: number) => {
     if (id === 0) {
       setTabActive([0]);
@@ -32,7 +32,6 @@ export default function Filter() {
       newTabs.length === 0 && setTabActive([0]);
     }
   };
-
   return (
     <div className={`${styles.filter} swiper-container`}>
       {!!movieGenres && movieGenres?.length > 0 && (
@@ -47,6 +46,7 @@ export default function Filter() {
               prevEl: ".left-arrow",
             }}
             modules={[Navigation]}
+            loop={false}
           >
             {movieGenres.map((genre) => {
               return (
