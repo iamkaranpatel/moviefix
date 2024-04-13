@@ -28,13 +28,24 @@ export const getAllMovieGenre = async () => {
   ).data;
 };
 
-export const getAllMovieByYear = async (year: number) => {
+interface GetMoviesParams {
+  primary_release_year: number;
+  sort_by: string;
+  with_genres?: string;
+}
+
+export const getMovies = async (year: number, genreTab: number[] = []) => {
+  const params: GetMoviesParams = {
+    'primary_release_year': year,
+    "sort_by": "popularity.desc",
+  }
+
+  if(genreTab.length > 0) {
+    params["with_genres"] = genreTab.join(" | ")
+  }
   return (
     await api.get(endpoints.get("DiscoverMovie")!, {
-      params: {
-        'primary_release_year': year,
-        "sort_by": "popularity.desc"
-      }
+      params: params
     })
   ).data;
 };

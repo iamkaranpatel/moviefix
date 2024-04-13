@@ -9,12 +9,13 @@ import SliderArrow from "../sliderArrow";
 import { useMovieStore } from "@/app/store/movie-store";
 
 export default function Filter() {
-  const { movieGenres, tabActive, setTabActive } = useMovieStore((state) => ({
+  const { movieGenres, tabActive, setTabActive, setIndex } = useMovieStore((state) => ({
     movieGenres: state.movieGenres,
     tabActive: state.tabActive,
     setTabActive: state.setTabActive,
+    setIndex: state.setIndex,
   }));
-console.log(movieGenres,"ll")
+
   const handleTabActive = (id: number) => {
     if (id === 0) {
       setTabActive([0]);
@@ -29,6 +30,7 @@ console.log(movieGenres,"ll")
         setTabActive([...newTabs]);
       }
 
+      setIndex(1)
       newTabs.length === 0 && setTabActive([0]);
     }
   };
