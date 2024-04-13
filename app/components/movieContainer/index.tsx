@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Filter from "../filter";
 import { getAllMovieGenre } from "@/app/utils/endpoint";
 import { MovieGenre } from "@/app/utils/types";
+import MovieList from "../movieList/movie-list";
 
 const MovieContainer = () => {
   const [movieGenres, setMovieGenres] = useState<MovieGenre[]>([]);
@@ -23,9 +24,12 @@ const MovieContainer = () => {
     fetchGenere();
   }, []);
 
-  return <div>
-    <Filter movieGenres={movieGenres} />
-    </div>;
+  return (
+    <div>
+      <Filter movieGenres={movieGenres} />
+      <MovieList movieGenres={movieGenres} />
+    </div>
+  );
 };
 
 export default MovieContainer;

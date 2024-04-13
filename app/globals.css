@@ -6,6 +6,8 @@
   --dark-gray: #242424;
   --dark-gray-2: rgba(36,36,36, .8);
   --gray: #484848;
+  --light-gray: #ccc;
+  --yellow: #F4C518;
 }
 
 * {
