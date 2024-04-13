@@ -3,7 +3,7 @@
   --black: #000;
   --white: #fff;
   --black-secondary: #121212;
-  --dark-gray: #242424;
+  --dark-gray: #060606;
   --dark-gray-2: rgba(36,36,36, .8);
   --gray: #484848;
   --light-gray: #ccc;
@@ -20,6 +20,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  background: var(--dark-gray);
 }
 
 .wrapper {
