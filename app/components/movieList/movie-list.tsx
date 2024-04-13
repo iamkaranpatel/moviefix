@@ -57,9 +57,9 @@ const MovieList = ({ movieGenres }: { movieGenres: MovieGenre[] }) => {
           {[...movieList?.keys()].length > 0 &&
             [...movieList?.keys()].map((movieYear) => (
               <MovieListDetails
-                key={year}
+                key={movieYear}
                 year={movieYear}
-                movieListData={movieList.get(year) || []}
+                movieListData={movieList.get(movieYear) || []}
                 movieGenres={movieGenres}
               />
             ))}

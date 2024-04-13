@@ -15,6 +15,7 @@ const MovieListDetails = ({
   movieListData,
   movieGenres,
 }: MovieListDetailsProps) => {
+
   return (
     <div>
       <h2 className={styles["year-heading"]}>{year}</h2>
