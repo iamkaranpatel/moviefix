@@ -1,0 +1,7 @@
+.movie-list-section { padding: 30px 0; }
+
+.movie-list-details {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}

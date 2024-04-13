@@ -1,28 +1,31 @@
 "Use Client";
 
-import { MovieGenre } from "@/app/utils/types";
 import styles from "./filter.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import SliderArrow from "../sliderArrow";
-import { useState } from "react";
+import { useMovieStore } from "@/app/store/movie-store";
 
-export default function Filter({ movieGenres }: { movieGenres: MovieGenre[] }) {
-  const [tabActive, setTabActive] = useState<number[]>([0]);
+export default function Filter() {
+  const { movieGenres, tabActive, setTabActive } = useMovieStore((state) => ({
+    movieGenres: state.movieGenres,
+    tabActive: state.tabActive,
+    setTabActive: state.setTabActive,
+  }));
 
   const handleTabActive = (id: number) => {
     if (id === 0) {
       setTabActive([0]);
     } else {
       let newTabs = tabActive.filter((tabId) => tabId !== 0);
-      
+
       if (tabActive.includes(id)) {
         newTabs = tabActive.filter((tabId) => tabId !== id);
         setTabActive([...newTabs]);
       } else {
-        newTabs = [...newTabs, id]
+        newTabs = [...newTabs, id];
         setTabActive([...newTabs]);
       }
 
@@ -50,9 +53,7 @@ export default function Filter({ movieGenres }: { movieGenres: MovieGenre[] }) {
                 <SwiperSlide
                   key={genre.id}
                   className={`${styles["filter-slide"]} ${
-                    tabActive.includes(genre.id)
-                      ? styles["tab-active"]
-                      : ""
+                    tabActive.includes(genre.id) ? styles["tab-active"] : ""
                   }`}
                 >
                   <button onClick={() => handleTabActive(genre.id)}>

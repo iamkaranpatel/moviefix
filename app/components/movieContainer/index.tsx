@@ -1,12 +1,15 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Filter from "../filter";
 import { getAllMovieGenre } from "@/app/utils/endpoint";
-import { MovieGenre } from "@/app/utils/types";
-import MovieList from "../movieList/movie-list";
+import MovieList from "../movieInfiniteScroll";
+import { useMovieStore } from "@/app/store/movie-store";
 
 const MovieContainer = () => {
-  const [movieGenres, setMovieGenres] = useState<MovieGenre[]>([]);
+  const { movieGenres, setMovieGenres } = useMovieStore((state) => ({
+    movieGenres: state.movieGenres,
+    setMovieGenres: state.setMovieGenres,
+  }));
 
   useEffect(() => {
     const fetchGenere = async () => {
@@ -14,7 +17,7 @@ const MovieContainer = () => {
         const movieGenres = await getAllMovieGenre();
 
         if (movieGenres?.genres?.length > 0) {
-          setMovieGenres([{ id: 0, name: "All" }, ...movieGenres?.genres]);
+          setMovieGenres([...movieGenres?.genres]);
         }
       } catch (error) {
         console.log("error", error);
@@ -26,8 +29,8 @@ const MovieContainer = () => {
 
   return (
     <div>
-      <Filter movieGenres={movieGenres} />
-      <MovieList movieGenres={movieGenres} />
+      <Filter />
+      <MovieList />
     </div>
   );
 };

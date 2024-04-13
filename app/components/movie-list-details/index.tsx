@@ -1,6 +1,6 @@
 import { MovieDetails, MovieGenre } from "@/app/utils/types";
 import React from "react";
-import styles from "./movie-lising.module.css";
+import styles from "./movie-list-details.module.css";
 import Image from "next/image";
 import { Star } from "lucide-react";
 import { formatDate } from "@/app/utils/utils";
