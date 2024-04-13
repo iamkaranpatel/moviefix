@@ -6,18 +6,17 @@ import MovieList from "../movieInfiniteScroll";
 import { useMovieStore } from "@/app/store/movie-store";
 
 const MovieContainer = () => {
-  const { movieGenres, setMovieGenres } = useMovieStore((state) => ({
-    movieGenres: state.movieGenres,
+  const { setMovieGenres } = useMovieStore((state) => ({
     setMovieGenres: state.setMovieGenres,
   }));
 
   useEffect(() => {
     const fetchGenere = async () => {
       try {
-        const movieGenres = await getAllMovieGenre();
+        const allMovieGenres = await getAllMovieGenre();
 
-        if (movieGenres?.genres?.length > 0) {
-          setMovieGenres([...movieGenres?.genres]);
+        if (allMovieGenres?.genres?.length > 0) {
+          setMovieGenres([{ id: 0, name: "All" }, ...allMovieGenres?.genres]);
         }
       } catch (error) {
         console.log("error", error);
@@ -26,7 +25,6 @@ const MovieContainer = () => {
 
     fetchGenere();
   }, []);
-
   return (
     <div>
       <Filter />

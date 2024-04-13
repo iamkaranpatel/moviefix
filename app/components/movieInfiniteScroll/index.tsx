@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { getAllMovieByYear } from "@/app/utils/endpoint";
+import { getMovies } from "@/app/utils/endpoint";
 import styles from "./movie-infinite-scroll.module.css";
 import yearsArray from "@/app/utils/utils";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -9,21 +9,24 @@ import MovieListDetails from "../movie-list-details";
 import { useMovieStore } from "@/app/store/movie-store";
 
 const MovieList = () => {
-  const { movieList, setMovieList, movieGenres } = useMovieStore((state) => ({
+  const { movieList, setMovieList, movieGenres, tabActive, setIndex, index } = useMovieStore((state) => ({
     movieList: state.movieList,
     movieGenres: state.movieGenres,
+    tabActive: state.tabActive,
+    index: state.index,
     setMovieList: state.setMovieList,
+    setIndex: state.setIndex,
   }));
 
-  const [index, setIndex] = useState(1);
   const [year, setYear] = useState(yearsArray[0]);
   const [hasMore, setHasMore] = useState(true);
+  const genreList = !tabActive.includes(0) ? tabActive : [];
 
   useEffect(() => {
     const fetchMovieByYear = async () => {
       try {
-        const movieListByYear = await getAllMovieByYear(year);
-        const newDetails = new Map(movieList);
+        const movieListByYear = await getMovies(year, genreList);
+        const newDetails = genreList ? new Map() : new Map(movieList);
         newDetails.set(year, movieListByYear?.results);
         setMovieList(newDetails);
       } catch (error) {
@@ -32,12 +35,11 @@ const MovieList = () => {
     };
 
     fetchMovieByYear();
-  }, []);
+  }, [tabActive]);
 
   const fetchMoreData = async () => {
-    console.log(yearsArray[index])
     try {
-      const movieListByYear = await getAllMovieByYear(yearsArray[index]);
+      const movieListByYear = await getMovies(yearsArray[index], genreList);
       const newDetails = new Map(movieList);
       newDetails.set(yearsArray[index], movieListByYear?.results);
       setMovieList(newDetails);
@@ -46,7 +48,7 @@ const MovieList = () => {
     } catch (error) {
       console.log("error", error);
     } finally {
-      setIndex((prevIndex) => prevIndex + 1);
+      setIndex( index + 1);
     }
   };
 
@@ -55,7 +57,8 @@ const MovieList = () => {
       dataLength={[...movieList?.keys()].length}
       next={fetchMoreData}
       hasMore={hasMore}
-      loader={"loading"}
+      loader={<div><Loader /></div>}
+      style={{overflow: "hidden"}}
     >
       <div className={styles["movie-list-section"]}>
         <div className={`wrapper ${styles["movie-list-details"]}`}>

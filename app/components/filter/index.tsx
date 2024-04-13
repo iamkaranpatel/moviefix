@@ -9,10 +9,11 @@ import SliderArrow from "../sliderArrow";
 import { useMovieStore } from "@/app/store/movie-store";
 
 export default function Filter() {
-  const { movieGenres, tabActive, setTabActive } = useMovieStore((state) => ({
+  const { movieGenres, tabActive, setTabActive, setIndex } = useMovieStore((state) => ({
     movieGenres: state.movieGenres,
     tabActive: state.tabActive,
     setTabActive: state.setTabActive,
+    setIndex: state.setIndex,
   }));
 
   const handleTabActive = (id: number) => {
@@ -29,10 +30,10 @@ export default function Filter() {
         setTabActive([...newTabs]);
       }
 
+      setIndex(1)
       newTabs.length === 0 && setTabActive([0]);
     }
   };
-
   return (
     <div className={`${styles.filter} swiper-container`}>
       {!!movieGenres && movieGenres?.length > 0 && (
@@ -47,6 +48,7 @@ export default function Filter() {
               prevEl: ".left-arrow",
             }}
             modules={[Navigation]}
+            loop={false}
           >
             {movieGenres.map((genre) => {
               return (
