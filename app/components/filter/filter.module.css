@@ -1,7 +1,6 @@
 .filter {
   padding: 15px 50px;
   position: relative;
-  background: var(--dark-gray);
 }
 
 .filter .filter-slide {

@@ -1,11 +1,22 @@
 .header {
+  width: 100%;
   padding: 15px 0;
-  background: var(--dark-gray);
-  backdrop-filter: blur(10px);
+  background: var(--dark-gray-2);
+  backdrop-filter: blur(15px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+}
+
+.header-wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
 .header a {
   display: block;
+  align-self: flex-start;
 }
 
 .header img {
