@@ -20,7 +20,7 @@ const MovieListDetails = ({
 }: MovieListDetailsProps) => {
 
   return (
-    <div>
+    <div className={styles["movie-year-list"]}>
       <h2 className={`${styles["year-heading"]} ${libre.className}`}>{year}</h2>
       <ul className={styles["movie-list-container"]}>
         {!!movieListData &&

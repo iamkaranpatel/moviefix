@@ -7,16 +7,18 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "../loader";
 import MovieListDetails from "../movie-list-details";
 import { useMovieStore } from "@/app/store/movie-store";
+import FilterSearch from "../filter-search";
 
 const MovieList = () => {
-  const { movieList, setMovieList, movieGenres, tabActive, setIndex, index } = useMovieStore((state) => ({
-    movieList: state.movieList,
-    movieGenres: state.movieGenres,
-    tabActive: state.tabActive,
-    index: state.index,
-    setMovieList: state.setMovieList,
-    setIndex: state.setIndex,
-  }));
+  const { movieList, setMovieList, movieGenres, tabActive, setIndex, index } =
+    useMovieStore((state) => ({
+      movieList: state.movieList,
+      movieGenres: state.movieGenres,
+      tabActive: state.tabActive,
+      index: state.index,
+      setMovieList: state.setMovieList,
+      setIndex: state.setIndex,
+    }));
 
   const [year, setYear] = useState(yearsArray[0]);
   const [hasMore, setHasMore] = useState(true);
@@ -48,32 +50,43 @@ const MovieList = () => {
     } catch (error) {
       console.log("error", error);
     } finally {
-      setIndex( index + 1);
+      setIndex(index + 1);
     }
   };
 
   return (
-    <InfiniteScroll
-      dataLength={[...movieList?.keys()].length}
-      next={fetchMoreData}
-      hasMore={hasMore}
-      loader={<div style={{padding: '20px 0'}}><Loader /></div>}
-      style={{overflow: "hidden"}}
-    >
-      <div className={styles["movie-list-section"]}>
-        <div className={`wrapper ${styles["movie-list-details"]}`}>
-          {[...movieList?.keys()].length > 0 &&
-            [...movieList?.keys()].map((movieYear) => (
-              <MovieListDetails
-                key={movieYear}
-                year={movieYear}
-                movieListData={movieList.get(movieYear) || []}
-                movieGenres={movieGenres}
-              />
-            ))}
+    <>
+      <div>
+        <div className="wrapper">
+          <FilterSearch className={styles["mobile-form"]} />
         </div>
       </div>
-    </InfiniteScroll>
+      <InfiniteScroll
+        dataLength={[...movieList?.keys()].length}
+        next={fetchMoreData}
+        hasMore={hasMore}
+        loader={
+          <div style={{ padding: "20px 0" }}>
+            <Loader />
+          </div>
+        }
+        style={{ overflow: "hidden" }}
+      >
+        <div className={styles["movie-list-section"]}>
+          <div className={`wrapper ${styles["movie-list-details"]}`}>
+            {[...movieList?.keys()].length > 0 &&
+              [...movieList?.keys()].map((movieYear) => (
+                <MovieListDetails
+                  key={movieYear}
+                  year={movieYear}
+                  movieListData={movieList.get(movieYear) || []}
+                  movieGenres={movieGenres}
+                />
+              ))}
+          </div>
+        </div>
+      </InfiniteScroll>
+    </>
   );
 };
 

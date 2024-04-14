@@ -1,7 +1,28 @@
-.movie-list-section { padding: 30px 0; }
+.movie-list-section {
+  padding: 30px 0;
+}
 
 .movie-list-details {
   display: flex;
   flex-direction: column;
   gap: 30px;
+}
+
+.mobile-form {
+  display: none;
+  margin-top: 50px;
+}
+
+.mobile-form input {
+  width: 100%;
+}
+
+@media only screen and (max-width: 480px) {
+  .mobile-form {
+    display: block;
+  }
+
+  .movie-list-section {
+    padding: 0 0 30px;
+  }
 }
