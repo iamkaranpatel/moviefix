@@ -8,29 +8,44 @@ import Loader from "../loader";
 import MovieListDetails from "../movie-list-details";
 import { useMovieStore } from "@/app/store/movie-store";
 import FilterSearch from "../filter-search";
+import { MovieListType } from "@/app/utils/types";
 
 const MovieList = () => {
-  const { movieList, setMovieList, movieGenres, tabActive, setIndex, index } =
-    useMovieStore((state) => ({
-      movieList: state.movieList,
-      movieGenres: state.movieGenres,
-      tabActive: state.tabActive,
-      index: state.index,
-      setMovieList: state.setMovieList,
-      setIndex: state.setIndex,
-    }));
+  const {
+    movieList,
+    setMovieList,
+    movieGenres,
+    tabActive,
+    setIndex,
+    index,
+    search,
+    searchMovieList,
+    setSearchMovieList,
+  } = useMovieStore((state) => ({
+    movieList: state.movieList,
+    movieGenres: state.movieGenres,
+    tabActive: state.tabActive,
+    index: state.index,
+    setMovieList: state.setMovieList,
+    setIndex: state.setIndex,
+    search: state.search,
+    setSearchMovieList: state.setSearchMovieList,
+    searchMovieList: state.searchMovieList,
+  }));
 
-  const [year, setYear] = useState(yearsArray[0]);
   const [hasMore, setHasMore] = useState(true);
   const genreList = !tabActive.includes(0) ? tabActive : [];
+  const [filteredData, setFilteredData] = useState(movieList);
+  const [isError, setIsError] = useState(null);
 
   useEffect(() => {
     const fetchMovieByYear = async () => {
       try {
-        const movieListByYear = await getMovies(year, genreList);
+        const movieListByYear = await getMovies(yearsArray[0], genreList);
         const newDetails = genreList ? new Map() : new Map(movieList);
-        newDetails.set(year, movieListByYear?.results);
+        newDetails.set(yearsArray[0], movieListByYear?.results);
         setMovieList(newDetails);
+        setFilteredData(newDetails);
       } catch (error) {
         console.log("error", error);
       }
@@ -45,6 +60,8 @@ const MovieList = () => {
       const newDetails = new Map(movieList);
       newDetails.set(yearsArray[index], movieListByYear?.results);
       setMovieList(newDetails);
+      setFilteredData(newDetails);
+      filterBySearch(search, newDetails);
 
       index < yearsArray.length ? setHasMore(true) : setHasMore(false);
     } catch (error) {
@@ -54,6 +71,36 @@ const MovieList = () => {
     }
   };
 
+  const filterBySearch = (query: string, movieData: MovieListType) => {
+    if (query.length > 0) {
+      const searchFilterData = new Map(movieData);
+
+      for (let [key, value] of searchFilterData) {
+        const newVal = value.filter((movie) => {
+          return movie.title.toLowerCase().includes(query.toLowerCase());
+        });
+
+        if (newVal.length > 0) {
+          searchFilterData.set(key, newVal);
+        } else {
+          searchFilterData.delete(key);
+        }
+      }
+
+      setFilteredData(searchFilterData);
+      setSearchMovieList(searchFilterData);
+    } else {
+      setFilteredData(movieData);
+    }
+  };
+
+  useEffect(() => {
+    filterBySearch(search, movieList);
+  }, [search]);
+
+  if (isError)
+    return <div className={styles["no-result"]}>No Result found</div>;
+
   return (
     <>
       <div>
@@ -61,31 +108,32 @@ const MovieList = () => {
           <FilterSearch className={styles["mobile-form"]} />
         </div>
       </div>
-      <InfiniteScroll
-        dataLength={[...movieList?.keys()].length}
-        next={fetchMoreData}
-        hasMore={hasMore}
-        loader={
-          <div style={{ padding: "20px 0" }}>
-            <Loader />
-          </div>
-        }
-        style={{ overflow: "hidden" }}
-      >
-        <div className={styles["movie-list-section"]}>
-          <div className={`wrapper ${styles["movie-list-details"]}`}>
-            {[...movieList?.keys()].length > 0 &&
-              [...movieList?.keys()].map((movieYear) => (
+      {[...filteredData?.keys()].length > 0 && (
+        <InfiniteScroll
+          dataLength={[...filteredData?.keys()].length}
+          next={fetchMoreData}
+          hasMore={hasMore}
+          loader={
+            <div style={{ padding: "20px 0" }}>
+              <Loader />
+            </div>
+          }
+          style={{ overflow: "hidden" }}
+        >
+          <div className={styles["movie-list-section"]}>
+            <div className={`wrapper ${styles["movie-list-details"]}`}>
+              {[...filteredData?.keys()].map((movieYear) => (
                 <MovieListDetails
                   key={movieYear}
                   year={movieYear}
-                  movieListData={movieList.get(movieYear) || []}
+                  movieListData={filteredData.get(movieYear) || []}
                   movieGenres={movieGenres}
                 />
               ))}
+            </div>
           </div>
-        </div>
-      </InfiniteScroll>
+        </InfiniteScroll>
+      )}
     </>
   );
 };

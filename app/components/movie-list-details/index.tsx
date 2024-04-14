@@ -11,17 +11,20 @@ interface MovieListDetailsProps {
   movieListData: MovieDetails[] | [];
   movieGenres: MovieGenre[];
 }
-const libre = Libre_Baskerville({weight: ["400", "700"], subsets: ["latin"]});
+const libre = Libre_Baskerville({ weight: ["400", "700"], subsets: ["latin"] });
 
 const MovieListDetails = ({
   year,
   movieListData,
   movieGenres,
 }: MovieListDetailsProps) => {
-
   return (
     <div className={styles["movie-year-list"]}>
-      <h2 className={`${styles["year-heading"]} ${libre.className}`}>{year}</h2>
+      {!!movieListData && (
+        <h2 className={`${styles["year-heading"]} ${libre.className}`}>
+          {year}
+        </h2>
+      )}
       <ul className={styles["movie-list-container"]}>
         {!!movieListData &&
           movieListData.map((details: MovieDetails) => {
@@ -48,7 +51,9 @@ const MovieListDetails = ({
                     <span className={styles["release-date-label"]}>
                       Release Date:{" "}
                     </span>
-                    <span className={styles["release-date"]}>{formatDate(details.release_date)}</span>
+                    <span className={styles["release-date"]}>
+                      {formatDate(details.release_date)}
+                    </span>
                   </div>
                   <ul className={styles["genre-type"]}>
                     {details.genre_ids.map((id) => {

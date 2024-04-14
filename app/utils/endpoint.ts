@@ -1,4 +1,5 @@
 import axios from "axios";
+import { GetMoviesParams } from "./types";
 
 /**
  * create full API url
@@ -13,6 +14,7 @@ const createApiEndpoint = (endpoint: string): string => {
 const endpoints = new Map([
   ["MovieGenere", createApiEndpoint("genre/movie/list")],
   ["DiscoverMovie", createApiEndpoint("discover/movie")],
+  ["SearchMovie", createApiEndpoint("search/movie")],
 ]);
 
 export const api = axios.create({
@@ -28,12 +30,6 @@ export const getAllMovieGenre = async () => {
   ).data;
 };
 
-interface GetMoviesParams {
-  primary_release_year: number;
-  sort_by: string;
-  with_genres?: string;
-}
-
 export const getMovies = async (year: number, genreTab: number[] = []) => {
   const params: GetMoviesParams = {
     'primary_release_year': year,
@@ -45,6 +41,23 @@ export const getMovies = async (year: number, genreTab: number[] = []) => {
   }
   return (
     await api.get(endpoints.get("DiscoverMovie")!, {
+      params: params
+    })
+  ).data;
+};
+
+export const getSearchMovies = async (year: number, genreTab: number[] = [], search: string) => {
+  const params: GetMoviesParams = {
+    query: search,
+    'primary_release_year': year,
+    "sort_by": "popularity.desc",
+  }
+
+  if(genreTab.length > 0) {
+    params["with_genres"] = genreTab.join(" | ")
+  }
+  return (
+    await api.get(endpoints.get("SearchMovie")!, {
       params: params
     })
   ).data;

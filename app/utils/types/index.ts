@@ -17,3 +17,10 @@ export interface MovieDetails {
 }
 
 export type MovieListType = Map<number, MovieDetails[]> 
+
+export interface GetMoviesParams {
+  primary_release_year: number;
+  sort_by: string;
+  with_genres?: string;
+  query?: string;
+}
