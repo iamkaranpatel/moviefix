@@ -17,6 +17,13 @@
   width: 100%;
 }
 
+.no-result { 
+  margin-top: 40px;
+  color: var(--white); 
+  text-align: center;
+  font-size: 30px;
+}
+
 @media only screen and (max-width: 480px) {
   .mobile-form {
     display: block;
@@ -24,5 +31,9 @@
 
   .movie-list-section {
     padding: 0 0 30px;
+  }
+
+  .no-result { 
+    font-size: 20px;
   }
 }
