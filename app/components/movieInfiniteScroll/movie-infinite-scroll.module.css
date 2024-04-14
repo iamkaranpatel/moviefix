@@ -32,4 +32,8 @@
   .movie-list-section {
     padding: 0 0 30px;
   }
+
+  .no-result { 
+    font-size: 20px;
+  }
 }

@@ -10,6 +10,10 @@ import { useMovieStore } from "@/app/store/movie-store";
 import FilterSearch from "../filter-search";
 import { MovieListType } from "@/app/utils/types";
 
+interface ErrorType {
+  error: boolean | null;
+  message?: string
+}
 const MovieList = () => {
   const {
     movieList,
@@ -36,7 +40,7 @@ const MovieList = () => {
   const [hasMore, setHasMore] = useState(true);
   const genreList = !tabActive.includes(0) ? tabActive : [];
   const [filteredData, setFilteredData] = useState(movieList);
-  const [isError, setIsError] = useState<boolean | null>(null);
+  const [isError, setIsError] = useState<ErrorType>({error: null, message: "No Result Found"});
 
   useEffect(() => {
     const fetchMovieByYear = async () => {
@@ -46,8 +50,10 @@ const MovieList = () => {
         newDetails.set(yearsArray[0], movieListByYear?.results);
         setMovieList(newDetails);
         setFilteredData(newDetails);
+        setIsError({error: false});
       } catch (error) {
         console.log("error", error);
+        setIsError({error: true ,message: "Something went wrong please try again"});
       }
     };
 
@@ -64,8 +70,10 @@ const MovieList = () => {
       filterBySearch(search, newDetails);
 
       index < yearsArray.length ? setHasMore(true) : setHasMore(false);
+      setIsError({error: false});
     } catch (error) {
       console.log("error", error);
+      setIsError({error: true ,message: "Something went wrong please try again"});
     } finally {
       setIndex(index + 1);
     }
@@ -88,7 +96,9 @@ const MovieList = () => {
       }
 
       if ([...searchFilterData?.keys()].length === 0) {
-        setIsError(true);
+        setIsError({error: true ,message: "Something went wrong please try again"});
+      } else {
+        setIsError({error: false});
       }
 
       setFilteredData(searchFilterData);
@@ -97,6 +107,7 @@ const MovieList = () => {
     } else {
       setFilteredData(movieData);
       setHasMore(true);
+      setIsError({error: false});
     }
   };
 
@@ -104,8 +115,8 @@ const MovieList = () => {
     filterBySearch(search, movieList);
   }, [search]);
 
-  if (isError)
-    return <div className={styles["no-result"]}>No Result found</div>;
+  if (isError.error)
+    return <div className={styles["no-result"]}>{isError.message}</div>;
 
   return (
     <>
