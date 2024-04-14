@@ -9,6 +9,7 @@
 .year-heading {
   font-size: 60px;
   margin: 20px 0;
+  color: var(--white);
 }
 
 .movie-list-container > li {
@@ -17,7 +18,8 @@
   overflow: hidden;
   align-self: stretch;
   background-color: #f1f1f124;
-  box-shadow: 0 5px 10px rgba(0,0,0, 0.05);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  color: var(--white);
 }
 
 .movie-list-container > li img {
@@ -35,11 +37,16 @@
   overflow: hidden;
   margin-bottom: 10px;
   font-size: 15px;
+  color: var(--light-gray);
+}
+
+.movie-list-container .release-date-label {
+  font-weight: 700;
+  font-size: 14px;
 }
 
 .movie-list-container .release-date {
-  font-weight: 700;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .movie-info { padding: 20px 15px 25px; }
@@ -81,10 +88,10 @@
 
 .genre-type li {
   padding: 5px 8px;
+  border: 1px solid var(--light-gray);
   border-radius: 999999px;
   color: var(--white);
   font-size: 12px;
-  background: var(--dark-gray-2);
 }
 
 .movie-poster { position: relative; }

@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import SliderArrow from "../sliderArrow";
 import { useMovieStore } from "@/app/store/movie-store";
+import { useEffect } from "react";
 
 export default function Filter() {
   const { movieGenres, tabActive, setTabActive, setIndex } = useMovieStore((state) => ({
@@ -33,6 +34,8 @@ export default function Filter() {
       setIndex(1)
       newTabs.length === 0 && setTabActive([0]);
     }
+
+    typeof window !== "undefined" && window.scrollTo(0,0)
   };
   return (
     <div className={`${styles.filter} swiper-container`}>

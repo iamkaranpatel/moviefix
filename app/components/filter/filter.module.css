@@ -1,7 +1,6 @@
 .filter {
   padding: 15px 50px;
   position: relative;
-  background: var(--dark-gray);
 }
 
 .filter .filter-slide {
@@ -17,6 +16,7 @@
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
+  font-family: "Poppins";
   text-wrap: nowrap;
   color: var(--white);
   cursor: pointer;

@@ -1,0 +1,27 @@
+.filter-search-container {
+  position: relative;
+}
+
+.filter-search {
+  padding: 5px 12px 5px 30px;
+  background: transparent;
+  border-radius: 99999px;
+  border: 1px solid var(--light-gray);
+  font-size: 14px;
+  color: var(--white);
+  display: block;
+}
+
+.filter-search-container svg {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+  stroke: var(--light-gray);
+}
+
+@media only screen and (max-width: 480px) {
+  .filter-search-container {
+    display: none;
+  }
+}
