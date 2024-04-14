@@ -36,7 +36,7 @@ const MovieList = () => {
   const [hasMore, setHasMore] = useState(true);
   const genreList = !tabActive.includes(0) ? tabActive : [];
   const [filteredData, setFilteredData] = useState(movieList);
-  const [isError, setIsError] = useState(null);
+  const [isError, setIsError] = useState<boolean | null>(null);
 
   useEffect(() => {
     const fetchMovieByYear = async () => {
@@ -87,10 +87,16 @@ const MovieList = () => {
         }
       }
 
+      if ([...searchFilterData?.keys()].length === 0) {
+        setIsError(true);
+      }
+
       setFilteredData(searchFilterData);
       setSearchMovieList(searchFilterData);
+      setHasMore(false);
     } else {
       setFilteredData(movieData);
+      setHasMore(true);
     }
   };
 
