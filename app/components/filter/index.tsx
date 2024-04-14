@@ -8,14 +8,17 @@ import "swiper/css/navigation";
 import SliderArrow from "../sliderArrow";
 import { useMovieStore } from "@/app/store/movie-store";
 import { useEffect } from "react";
+import TabSkeleton from "../skeleton/tab-skeleton";
 
 export default function Filter() {
-  const { movieGenres, tabActive, setTabActive, setIndex } = useMovieStore((state) => ({
-    movieGenres: state.movieGenres,
-    tabActive: state.tabActive,
-    setTabActive: state.setTabActive,
-    setIndex: state.setIndex,
-  }));
+  const { movieGenres, tabActive, setTabActive, setIndex } = useMovieStore(
+    (state) => ({
+      movieGenres: state.movieGenres,
+      tabActive: state.tabActive,
+      setTabActive: state.setTabActive,
+      setIndex: state.setIndex,
+    })
+  );
 
   const handleTabActive = (id: number) => {
     if (id === 0) {
@@ -31,16 +34,16 @@ export default function Filter() {
         setTabActive([...newTabs]);
       }
 
-      setIndex(1)
+      setIndex(1);
       newTabs.length === 0 && setTabActive([0]);
     }
 
-    typeof window !== "undefined" && window.scrollTo(0,0)
+    typeof window !== "undefined" && window.scrollTo(0, 0);
   };
   return (
     <div className={`${styles.filter} swiper-container`}>
-      {!!movieGenres && movieGenres?.length > 0 && (
-        <>
+      {!!movieGenres && movieGenres?.length > 1 ? (
+        <div>
           <Swiper
             className={styles["filter-container"]}
             slidesPerView={"auto"}
@@ -69,7 +72,9 @@ export default function Filter() {
             })}
           </Swiper>
           <SliderArrow />
-        </>
+        </div>
+      ) : (
+        <TabSkeleton />
       )}
     </div>
   );
