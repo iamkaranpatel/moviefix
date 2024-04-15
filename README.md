@@ -6,7 +6,13 @@ Moviefix is a web application for listing Movie from 2012 to current year, built
 
 To run this project, ensure you have Node.js version 20 or higher installed.
 
-After cloning the repository, navigate to its directory and install the dependencies using `npm install` command:
+After cloning the repository, navigate to its directory and install the dependencies using `npm install` command
+
+Create a `.env` file containing below key and value details
+
+1. **NEXT_PUBLIC_MOVIE_API_URL**=`https://api.themoviedb.org/3/` ( *For Movie API default URL* )
+2. **NEXT_PUBLIC_MOVIE_IMAGE_URL**=`https://image.tmdb.org/t/p/original/` ( *For Movie Image Default URL* )
+3. **NEXT_PUBLIC_MOVIE_API_KEY** ( *Assign TMDB API key to this variable* )
 
 To run the development server use below command:
 
