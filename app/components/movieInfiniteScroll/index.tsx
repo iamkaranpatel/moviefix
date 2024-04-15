@@ -73,8 +73,8 @@ const MovieList = () => {
   const fetchMoreData = async () => {
     try {
       const movieListByYear = search
-        ? await getSearchMovies(yearsArray[0], genreList, search)
-        : await getMovies(yearsArray[0], genreList);
+        ? await getSearchMovies(yearsArray[index], genreList, search)
+        : await getMovies(yearsArray[index], genreList);
       const newDetails = new Map(movieList);
       newDetails.set(yearsArray[index], movieListByYear?.results);
       setMovieList(newDetails);
@@ -101,7 +101,7 @@ const MovieList = () => {
 
   if (isError.error)
     return <div className={styles["no-result"]}>{isError.message}</div>;
-
+console.log(movieList)
   return (
     <>
       <div>
