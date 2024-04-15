@@ -1,8 +1,12 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MovieFix
+
+MovieFix is a web application for listing Movie from 2012 to current year, built using [Next.js](https://nextjs.org/) using [TMDB API](https://developer.themoviedb.org/reference/discover-movie) and used Typescript
 
 ## Getting Started
 
-First, run the development server:
+For running this project node version 20+
+
+First, run the development server use below command:
 
 ```bash
 npm run dev
@@ -14,23 +18,26 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+First, run the build server use below command:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+# or
+yarn build
+# or
+pnpm build
+# or
+bun build
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Project Overview
 
-To learn more about Next.js, take a look at the following resources:
+1. This project list 20 movies per year from 2012 to current year, As we scroll movie data will be fetched based on year
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Movies can be filtered by it's genere, we can select multiple genre and get result based on it, for getting all genre result select all filter
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. Implemented Search Partially as current [TMDB Search API](https://developer.themoviedb.org/docs/search-and-query-for-details) provides limited paramates, Implemented search on fetched movie data it will search on movie title and description

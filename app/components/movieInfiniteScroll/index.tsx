@@ -96,7 +96,10 @@ const MovieList = () => {
 
       for (let [key, value] of searchFilterData) {
         const newVal = value.filter((movie) => {
-          return movie.title.toLowerCase().includes(query.toLowerCase());
+          return (
+            movie.title.toLowerCase().includes(query.toLowerCase()) ||
+            movie.overview.toLowerCase().includes(query.toLowerCase())
+          );
         });
 
         if (newVal.length > 0) {
