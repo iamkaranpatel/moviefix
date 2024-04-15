@@ -9,10 +9,11 @@ import MovieListDetails from "../movie-list-details";
 import { useMovieStore } from "@/app/store/movie-store";
 import FilterSearch from "../filter-search";
 import { MovieListType } from "@/app/utils/types";
+import MovieCard from "../skeleton/movie-card";
 
 interface ErrorType {
   error: boolean | null;
-  message?: string
+  message?: string;
 }
 const MovieList = () => {
   const {
@@ -40,7 +41,11 @@ const MovieList = () => {
   const [hasMore, setHasMore] = useState(true);
   const genreList = !tabActive.includes(0) ? tabActive : [];
   const [filteredData, setFilteredData] = useState(movieList);
-  const [isError, setIsError] = useState<ErrorType>({error: null, message: "No Result Found"});
+  const [isMounted, setIsMounted] = useState(true);
+  const [isError, setIsError] = useState<ErrorType>({
+    error: null,
+    message: "No Result Found",
+  });
 
   useEffect(() => {
     const fetchMovieByYear = async () => {
@@ -50,10 +55,13 @@ const MovieList = () => {
         newDetails.set(yearsArray[0], movieListByYear?.results);
         setMovieList(newDetails);
         setFilteredData(newDetails);
-        setIsError({error: false});
+        setIsError({ error: false });
       } catch (error) {
         console.log("error", error);
-        setIsError({error: true ,message: "Something went wrong please try again"});
+        setIsError({
+          error: true,
+          message: "Something went wrong please try again",
+        });
       }
     };
 
@@ -70,10 +78,13 @@ const MovieList = () => {
       filterBySearch(search, newDetails);
 
       index < yearsArray.length ? setHasMore(true) : setHasMore(false);
-      setIsError({error: false});
+      setIsError({ error: false });
     } catch (error) {
       console.log("error", error);
-      setIsError({error: true ,message: "Something went wrong please try again"});
+      setIsError({
+        error: true,
+        message: "Something went wrong please try again",
+      });
     } finally {
       setIndex(index + 1);
     }
@@ -96,9 +107,9 @@ const MovieList = () => {
       }
 
       if ([...searchFilterData?.keys()].length === 0) {
-        setIsError({error: true ,message: "Something went wrong please try again"});
+        setIsError({ error: true, message: "No Result Found" });
       } else {
-        setIsError({error: false});
+        setIsError({ error: false });
       }
 
       setFilteredData(searchFilterData);
@@ -107,13 +118,21 @@ const MovieList = () => {
     } else {
       setFilteredData(movieData);
       setHasMore(true);
-      setIsError({error: false});
+      setIsError({ error: false });
     }
   };
 
   useEffect(() => {
     filterBySearch(search, movieList);
   }, [search]);
+
+  useEffect(() => {
+    setIsMounted(false);
+  }, []);
+
+  if (isMounted) {
+    return <MovieCard />;
+  }
 
   if (isError.error)
     return <div className={styles["no-result"]}>{isError.message}</div>;

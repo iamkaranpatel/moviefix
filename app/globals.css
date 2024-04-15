@@ -1,13 +1,13 @@
 :root {
-  --red: #F0283C;
+  --red: #f0283c;
   --black: #000;
   --white: #fff;
   --black-secondary: #121212;
   --dark-gray: #060606;
-  --dark-gray-2: rgba(36,36,36, .8);
+  --dark-gray-2: rgba(36, 36, 36, 0.8);
   --gray: #484848;
   --light-gray: #ccc;
-  --yellow: #F4C518;
+  --yellow: #f4c518;
 }
 
 * {
@@ -30,7 +30,10 @@ body {
   margin: 0 auto;
 }
 
-ul, ol { list-style: none; }
+ul,
+ol {
+  list-style: none;
+}
 
 button {
   border: 0;
