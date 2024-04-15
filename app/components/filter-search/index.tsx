@@ -15,20 +15,19 @@ const FilterSearch = ({ className }: { className?: string }) => {
   const [query, setQuery] = useState(search);
 
   const UpdateQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value)
-  }
+    setQuery(e.target.value);
+  };
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      setSearch(query)
-      setTabActive([0])
-    },1000);
+      setSearch(query);
+      setTabActive([0]);
+    }, 1000);
 
     return () => {
-      clearTimeout(handler)
-    }
-  }, [query])
-  
+      clearTimeout(handler);
+    };
+  }, [query]);
 
   return (
     <form className={`${styles["filter-search-container"]} ${className || ""}`}>

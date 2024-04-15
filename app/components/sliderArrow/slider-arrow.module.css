@@ -18,9 +18,7 @@
 }
 
 .left-arrow:hover,
-.right-arrow:hover {
-  border-color: var(--red);
-}
+.right-arrow:hover { border-color: var(--red); }
 
 .left-arrow:disabled,
 .right-arrow:disabled {
@@ -29,17 +27,10 @@
 }
 
 .left-arrow:disabled:hover,
-.right-arrow:disabled:hover {
-  border-color: transparent;
-}
+.right-arrow:disabled:hover { border-color: transparent; }
 
-.left-arrow {
-  left: 10px;
-}
-
-.right-arrow {
-  right: 10px;
-}
+.left-arrow { left: 10px; }
+.right-arrow { right: 10px; }
 
 .left-arrow svg,
 .right-arrow svg {

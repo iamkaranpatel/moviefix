@@ -44,10 +44,7 @@
   font-size: 14px;
 }
 
-.movie-list-container .release-date {
-  font-size: 12px;
-}
-
+.movie-list-container .release-date { font-size: 12px; }
 .movie-info { padding: 20px 15px 25px; }
 
 .vote-details {

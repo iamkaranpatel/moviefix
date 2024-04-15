@@ -8,7 +8,6 @@ import Loader from "../loader";
 import MovieListDetails from "../movie-list-details";
 import { useMovieStore } from "@/app/store/movie-store";
 import FilterSearch from "../filter-search";
-import { MovieListType } from "@/app/utils/types";
 import MovieCard from "../skeleton/movie-card";
 
 interface ErrorType {
@@ -53,13 +52,12 @@ const MovieList = () => {
         newDetails.set(yearsArray[0], movieListByYear?.results);
         setMovieList(newDetails);
         setIsError({ error: false });
-        if(newDetails.get(2012)?.length === 0) {
-          setHasMore(false)
+        if (newDetails.get(2012)?.length === 0) {
+          setHasMore(false);
           setIsError({ error: true, message: "No Result Found" });
         } else {
-          setHasMore(true)
+          setHasMore(true);
         }
-
       } catch (error) {
         console.log("error", error);
         setIsError({
