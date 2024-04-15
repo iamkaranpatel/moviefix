@@ -1,10 +1,11 @@
 import React from "react";
+import style from "./skeleton.module.css"
 
 const TabSkeleton = () => {
   return (
-    <ul className={`tab-skeleton`}>
-      {Array.from({ length: 15 }, (v, i) => (
-        <li key={i} className="line"></li>
+    <ul className={`${style["tab-skeleton"]}`}>
+      {Array.from({ length: 35 }, (v, i) => (
+        <li key={i} className={`${style["line"]} ${style["skeleton-gradient"]}`}></li>
       ))}
     </ul>
   );

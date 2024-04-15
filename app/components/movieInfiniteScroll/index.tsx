@@ -9,6 +9,7 @@ import MovieListDetails from "../movie-list-details";
 import { useMovieStore } from "@/app/store/movie-store";
 import FilterSearch from "../filter-search";
 import { MovieListType } from "@/app/utils/types";
+import MovieCard from "../skeleton/movie-card";
 
 interface ErrorType {
   error: boolean | null;
@@ -40,6 +41,7 @@ const MovieList = () => {
   const [hasMore, setHasMore] = useState(true);
   const genreList = !tabActive.includes(0) ? tabActive : [];
   const [filteredData, setFilteredData] = useState(movieList);
+  const [isMounted, setIsMounted] = useState(true);
   const [isError, setIsError] = useState<ErrorType>({error: null, message: "No Result Found"});
 
   useEffect(() => {
@@ -114,6 +116,14 @@ const MovieList = () => {
   useEffect(() => {
     filterBySearch(search, movieList);
   }, [search]);
+
+  useEffect(() => {
+    setIsMounted(false)
+  }, []);
+
+  if(isMounted) {
+    return <MovieCard />
+  }
 
   if (isError.error)
     return <div className={styles["no-result"]}>{isError.message}</div>;

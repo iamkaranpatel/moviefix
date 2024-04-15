@@ -1,13 +1,13 @@
 :root {
-  --red: #F0283C;
+  --red: #f0283c;
   --black: #000;
   --white: #fff;
   --black-secondary: #121212;
   --dark-gray: #060606;
-  --dark-gray-2: rgba(36,36,36, .8);
+  --dark-gray-2: rgba(36, 36, 36, 0.8);
   --gray: #484848;
   --light-gray: #ccc;
-  --yellow: #F4C518;
+  --yellow: #f4c518;
 }
 
 * {
@@ -30,35 +30,12 @@ body {
   margin: 0 auto;
 }
 
-ul, ol { list-style: none; }
+ul,
+ol {
+  list-style: none;
+}
 
 button {
   border: 0;
   outline: none;
-}
-
-.tab-skeleton {
-  display: flex;
-  overflow: hidden;
-}
-
-.tab-skeleton .line {
-  margin-right: 8px;
-  min-width: 70px;
-  height: 32px;
-  margin-bottom:6px;
-  border-radius: 2px;
-  background: rgba(130, 130, 130, 0.2);
-  background: linear-gradient(to right, rgba(130, 130, 130, 0.2) 8%, rgba(130, 130, 130, 0.3) 18%, rgba(130, 130, 130, 0.2) 33%);
-  background-size: 800px 100px;
-  animation: wave-lines 2s infinite ease-out;
-}
-
-@keyframes wave-lines {
-  0% {
-      background-position: -468px 0;
-  }
-   100% {
-      background-position: 468px 0;
-  }
 }

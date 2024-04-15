@@ -7,7 +7,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import SliderArrow from "../sliderArrow";
 import { useMovieStore } from "@/app/store/movie-store";
-import { useEffect } from "react";
 import TabSkeleton from "../skeleton/tab-skeleton";
 
 export default function Filter() {
