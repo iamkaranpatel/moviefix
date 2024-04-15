@@ -6,9 +6,10 @@ import { Search } from "lucide-react";
 import { useMovieStore } from "@/app/store/movie-store";
 
 const FilterSearch = ({ className }: { className?: string }) => {
-  const { search, setSearch } = useMovieStore((state) => ({
+  const { search, setSearch, setTabActive } = useMovieStore((state) => ({
     search: state.search,
     setSearch: state.setSearch,
+    setTabActive: state.setTabActive,
   }));
 
   const [query, setQuery] = useState(search);
@@ -20,6 +21,7 @@ const FilterSearch = ({ className }: { className?: string }) => {
   useEffect(() => {
     const handler = setTimeout(() => {
       setSearch(query)
+      setTabActive([0])
     },1000);
 
     return () => {

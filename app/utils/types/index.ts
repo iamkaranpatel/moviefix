@@ -23,4 +23,5 @@ export interface GetMoviesParams {
   sort_by: string;
   with_genres?: string;
   query?: string;
+  "vote_average"?: number
 }
