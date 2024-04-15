@@ -29,3 +29,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 2. Users can filter movies by genre. Multiple genres can be selected, and selecting all genres will display all movies.
 
 3. Search functionality is implemented using  [TMDB Search API](https://developer.themoviedb.org/docs/search-and-query-for-details).
+<br />***Note:*** Above search API has a limitation, we can't club search API with genre filters
