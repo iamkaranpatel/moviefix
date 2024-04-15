@@ -22,6 +22,7 @@ const FilterSearch = ({ className }: { className?: string }) => {
     const handler = setTimeout(() => {
       setSearch(query);
       setTabActive([0]);
+      typeof window !== "undefined" && window.scrollTo(0, 0);
     }, 1000);
 
     return () => {
