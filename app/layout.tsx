@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "./components/header";
+import BackToTop from "./components/back-to-top";
 
 const poppins = Poppins({weight: ["400"] ,subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body className={poppins.className}>
         <Header />
         {children}
+        <BackToTop />
       </body>
     </html>
   );
