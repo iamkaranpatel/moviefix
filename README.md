@@ -24,7 +24,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Project Overview
 
-1. Movies are listed 20 per year from 2012 to the current year. Additional movie data is fetched as the user scrolls.
+1. This project list 20 movies per year from 2012 to current year, As we scroll movie data will be fetched based on year
 
 2. Users can filter movies by genre. Multiple genres can be selected, and selecting all genres will display all movies.
 
