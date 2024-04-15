@@ -101,7 +101,7 @@ const MovieList = () => {
 
   if (isError.error)
     return <div className={styles["no-result"]}>{isError.message}</div>;
-console.log(movieList)
+
   return (
     <>
       <div>
