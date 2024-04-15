@@ -1,6 +1,6 @@
-# MovieFix
+# Moviefix
 
-MovieFix is a web application for listing Movie from 2012 to current year, built using [Next.js](https://nextjs.org/), [TMDB API](https://developer.themoviedb.org/reference/discover-movie) and Typescript.
+Moviefix is a web application for listing Movie from 2012 to current year, built using [Next.js](https://nextjs.org/), [TMDB API](https://developer.themoviedb.org/reference/discover-movie) and Typescript.
 
 ## Getting Started
 
