@@ -1,0 +1,17 @@
+.back-to-top {
+  width: 44px;
+  height: 44px;
+  border-radius: 100%;
+  border: 2px solid var(--red);
+  background: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  right: 16px;
+  bottom: -52px;
+  cursor: pointer;
+  transition: all .3s linear;
+}
+
+.back-to-top.active { bottom: 32px; }
