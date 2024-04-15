@@ -1,6 +1,4 @@
-.movie-list-section {
-  padding: 30px 0;
-}
+.movie-list-section { padding: 30px 0; }
 
 .movie-list-details {
   display: flex;
@@ -13,9 +11,7 @@
   margin-top: 50px;
 }
 
-.mobile-form input {
-  width: 100%;
-}
+.mobile-form input { width: 100%; }
 
 .no-result { 
   margin-top: 40px;
@@ -25,15 +21,7 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .mobile-form {
-    display: block;
-  }
-
-  .movie-list-section {
-    padding: 0 0 30px;
-  }
-
-  .no-result { 
-    font-size: 20px;
-  }
+  .mobile-form { display: block; }
+  .movie-list-section { padding: 0 0 30px; }
+  .no-result { font-size: 20px; }
 }

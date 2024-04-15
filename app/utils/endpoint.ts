@@ -34,6 +34,7 @@ export const getMovies = async (year: number, genreTab: number[] = []) => {
   const params: GetMoviesParams = {
     'primary_release_year': year,
     "sort_by": "popularity.desc",
+    "vote_average": 1.1
   }
 
   if(genreTab.length > 0) {
@@ -51,6 +52,7 @@ export const getSearchMovies = async (year: number, genreTab: number[] = [], sea
     query: search,
     'primary_release_year': year,
     "sort_by": "popularity.desc",
+    "vote_average": 1.1
   }
 
   if(genreTab.length > 0) {

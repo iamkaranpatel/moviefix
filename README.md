@@ -28,4 +28,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 2. Users can filter movies by genre. Multiple genres can be selected, and selecting all genres will display all movies.
 
-3. Search functionality is implemented partially due to limitations of the  [TMDB Search API](https://developer.themoviedb.org/docs/search-and-query-for-details). Searches are performed on movie titles and descriptions based on current fetched data.
+3. Search functionality is implemented using  [TMDB Search API](https://developer.themoviedb.org/docs/search-and-query-for-details).

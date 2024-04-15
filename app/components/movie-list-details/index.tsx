@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Star } from "lucide-react";
 import { formatDate } from "@/app/utils/utils";
 import { Libre_Baskerville } from "next/font/google";
+import { useMovieStore } from "@/app/store/movie-store";
 
 interface MovieListDetailsProps {
   year: number;
@@ -18,15 +19,17 @@ const MovieListDetails = ({
   movieListData,
   movieGenres,
 }: MovieListDetailsProps) => {
+  const {} = useMovieStore((state) => ({ search: state.search }));
   return (
     <div className={styles["movie-year-list"]}>
-      {!!movieListData && (
+      {!!movieListData && movieListData.length > 0 && (
         <h2 className={`${styles["year-heading"]} ${libre.className}`}>
           {year}
         </h2>
       )}
       <ul className={styles["movie-list-container"]}>
         {!!movieListData &&
+          movieListData.length > 0 &&
           movieListData.map((details: MovieDetails) => {
             return (
               <li key={details?.id}>
